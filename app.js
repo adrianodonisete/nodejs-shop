@@ -21,6 +21,4 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000, () => {
-    console.log('Listening at http://localhost:3000/')
-});
+app.listen(3000);
