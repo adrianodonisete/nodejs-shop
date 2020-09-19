@@ -1,12 +1,12 @@
 <!-- <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Nodejs With MySQL" />
+  <img src="./.github/app.gif" alt="Nodejs With MongoDB" />
 
   &#xa0;
 
   <a href="javascript:;">Demo</a>
 </div> -->
 
-<h1 align="center">Node.js With MySQL</h1>
+<h1 align="center">Node.js With MongoDB</h1>
 
 <p align="center">
   <!-- <img alt="Github top language" src="https://img.shields.io/github/languages/top/adrianodonisete/nodejs-complete-guide?color=56BEB8"> -->
@@ -27,7 +27,7 @@
 <!-- Status -->
 
 <h4 align="center"> 
-	🚧  Node.js With MySQL 🚀 Under construction...  🚧
+	🚧  Node.js With Mon 🚀 Under construction...  🚧
 </h4> 
 
 <hr>
@@ -46,7 +46,7 @@
 
 ## :dart: About ##
 
-Node.js using MySQL
+Node.js using MongoDB
 
 <!-- ## :sparkles: Features ##
 
@@ -61,8 +61,8 @@ The following tools were used in this project:
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [EJS](https://ejs.co/)
-- [MySQL](https://www.mysql.com/)
-- [Sequelize ORM](https://sequelize.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
 
 ## :white_check_mark: Requirements ##
 
