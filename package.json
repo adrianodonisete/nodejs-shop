@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-complete-guide",
-  "version": "20.9.1",
-  "description": "NodeJS, MongoDB, Shop",
+  "name": "nodejs-shop-mysql",
+  "version": "1.0.0",
+  "description": "Node.js with MySQL",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,15 +9,20 @@
     "start-server": "node app.js"
   },
   "author": "Adriano Machado",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "nodemon": "^1.18.3"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^8.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "pug": "^2.0.3"
+    "mongodb": "^3.6.2",
+    "mysql2": "^2.1.0",
+    "pug": "^2.0.3",
+    "sequelize": "^6.3.5",
+    "tedious": "^8.0.0"
   }
 }
