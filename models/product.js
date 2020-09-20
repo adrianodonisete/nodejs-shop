@@ -47,7 +47,7 @@ class Product {
     }
 
     static findByPk(prodId) {
-        return findById(prodId);
+        return Product.findById(prodId);
     }
 
     static findById(prodId) {
@@ -70,7 +70,7 @@ class Product {
         return db
             .collection("products")
             .deleteOne({ _id: new mongodb.ObjectId(prodId) })
-            .then(result => {
+            .then(() => {
                 console.log("Deleted");
             })
             .catch(err => {
