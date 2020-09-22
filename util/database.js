@@ -12,7 +12,8 @@ const DB_HOST = process.env.DB_HOST;
 
 const mongoConnect = callback => {
     MongoClient.connect(
-        `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true`
+        `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true`,
+        { useUnifiedTopology: true }
     )
         .then(client => {
             console.log("Connected!");
