@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-shop-mysql",
+  "name": "nodejs-shop",
   "version": "1.0.0",
-  "description": "Node.js with MySQL",
+  "description": "Node.js with MongoDB",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

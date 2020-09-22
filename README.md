@@ -27,7 +27,7 @@
 <!-- Status -->
 
 <h4 align="center"> 
-	🚧  Node.js With Mon 🚀 Under construction...  🚧
+	🚧  Node.js With MongoDB Under construction...  🚧
 </h4> 
 
 <hr>
@@ -72,10 +72,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/adrianodonisete/nodejs-shop-mysql
+$ git clone https://github.com/adrianodonisete/nodejs-shop
 
 # Access
-$ cd nodejs-complete-guide
+$ cd nodejs-shop
 
 # Install dependencies
 $ npm i -y
