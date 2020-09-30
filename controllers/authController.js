@@ -2,19 +2,30 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
 
+const helpMessage = req => {    
+    const message = req.flash('error');
+    if (message.length > 0) {
+        return message[0];
+    } else {
+        return null;
+    }
+}
+
 exports.getLogin = (req, res, next) => {
+    const message = helpMessage(req);
     res.render('auth/login', {
         path: '/login',
         pageTitle: 'Login',
-        isAuthenticated: false,
+        errorMessage: message
     });
 };
 
 exports.getSignup = (req, res, next) => {
+    const message = helpMessage(req);
     res.render('auth/signup', {
         path: '/signup',
         pageTitle: 'Signup',
-        isAuthenticated: false,
+        errorMessage: message
     });
 };
 
@@ -24,7 +35,8 @@ exports.postLogin = (req, res, next) => {
     User.findOne({ email })
         .then(user => {
             if (!user) {
-                res.redirect('/login');
+                req.flash('error', 'Invalid email or password.');
+                return res.redirect('/login');
             }
             bcrypt
                 .compare(password, user.password)
@@ -33,12 +45,11 @@ exports.postLogin = (req, res, next) => {
                         req.session.isLoggedIn = true;
                         req.session.user = user;
                         return req.session.save(err => {
-                            console.log(err);
                             res.redirect('/');
                         });
-                    } else {
-                        res.redirect('/login');
-                    }
+                    } 
+                    req.flash('error', 'Invalid email or password.');
+                    return res.redirect('/login');
                 })
                 .catch(() => {
                     res.redirect('/login');
@@ -54,7 +65,8 @@ exports.postSignup = (req, res, next) => {
     User.findOne({ email: email })
         .then(userDoc => {
             if (userDoc) {
-                res.redirect('/signup');
+                req.flash('error', 'Email exists already, please pick a different one.');
+                return res.redirect('/signup');
             }
             return bcrypt
                 .hash(password, 12)
