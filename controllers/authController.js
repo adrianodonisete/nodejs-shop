@@ -20,6 +20,33 @@ exports.getLogin = (req, res, next) => {
         path: '/login',
         pageTitle: 'Login',
         errorMessage: message,
+        oldInput: {
+            email: '',
+            password: '',
+        },
+        validationErrors: []
+    });
+};
+
+exports.postLogin = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).render('auth/login', {
+            path: '/login',
+            pageTitle: 'Login',
+            errorMessage: errors.array()[0].msg,
+            oldInput: {
+                email: req.body.email,
+                password: req.body.password,
+            },
+            validationErrors: errors.array()
+        });
+    }
+
+    req.session.isLoggedIn = true;
+    req.session.user = req.user;
+    return req.session.save(err => {
+        res.redirect('/');
     });
 };
 
@@ -28,23 +55,12 @@ exports.getSignup = (req, res, next) => {
         path: '/signup',
         pageTitle: 'Signup',
         errorMessage: helpMessage(req),
-    });
-};
-
-exports.postLogin = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.render('auth/login', {
-            path: '/login',
-            pageTitle: 'Login',
-            errorMessage: errors.array()[0].msg,
-        });
-    }
-
-    req.session.isLoggedIn = true;
-    req.session.user = req.user;
-    return req.session.save(err => {
-        res.redirect('/');
+        oldInput: {
+            email: '',
+            password: '',
+            confirmPassword: '',
+        },
+        validationErrors: []
     });
 };
 
@@ -58,6 +74,12 @@ exports.postSignup = (req, res, next) => {
             path: '/signup',
             pageTitle: 'Signup',
             errorMessage: errors.array()[0].msg,
+            oldInput: {
+                email,
+                password,
+                confirmPassword: req.body.confirmPassword,
+            },
+            validationErrors: errors.array()
         });
     }
     bcrypt

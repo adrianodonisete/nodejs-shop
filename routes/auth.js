@@ -19,22 +19,24 @@ router.post(
             'Please enter a password with only numbers and text and min 5 an max 15 characters.'
         )
             .isLength({ min: 5, max: 15 })
-            .isAlphanumeric(),
+            .isAlphanumeric()
+            .trim(),
         check('email')
             .isEmail()
             .withMessage('Invalid email!')
+            .normalizeEmail()
             .custom((value, { req }) => {
                 return User.findOne({ email: value }).then(user => {
                     console.log(user);
                     if (!user) {
-                        return Promise.reject('Invalid email or password1.');
+                        return Promise.reject('Invalid email or password.');
                     } else {
                         return bcrypt
                             .compare(req.body.password, user.password)
                             .then(doMatch => {
                                 if (!doMatch) {
                                     return Promise.reject(
-                                        'Invalid email or password2.'
+                                        'Invalid email or password.'
                                     );
                                 }
                                 req.user = user;
@@ -63,19 +65,23 @@ router.post(
                     return true;
                 });
                 // .catch(err => console.log(err));
-            }),
+            })
+            .normalizeEmail(),
         body(
             'password',
             'Please enter a password with only numbers and text and min 5 an max 15 characters.'
         )
             .isLength({ min: 5, max: 15 })
-            .isAlphanumeric(),
-        body('confirmPassword').custom((value, { req }) => {
-            if (value !== req.body.password) {
-                throw new Error('Passwords have to match!');
-            }
-            return true;
-        }),
+            .isAlphanumeric()
+            .trim(),
+        body('confirmPassword')
+            .custom((value, { req }) => {
+                if (value !== req.body.password) {
+                    throw new Error('Passwords have to match!');
+                }
+                return true;
+            })
+            .trim(),
     ],
     authController.postSignup
 );
